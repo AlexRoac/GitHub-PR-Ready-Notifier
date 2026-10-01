@@ -1,0 +1,14 @@
+{
+  "name": "github-pr-ready-notifier",
+  "version": "1.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Chrome extension that notifies when a GitHub pull request is ready to Squash and merge.",
+  "scripts": {
+    "test": "node --test content.test.mjs github-api.test.mjs",
+    "check": "node --check github-api.js && node --check background.js && node --check content.js && node --check popup.js"
+  },
+  "devDependencies": {
+    "jsdom": "^29.0.0"
+  }
+}

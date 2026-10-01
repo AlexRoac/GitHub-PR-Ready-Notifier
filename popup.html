@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GitHub PR Ready Notifier</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main>
+      <div class="heading">
+        <img src="icon128.png" width="36" height="36" alt="" />
+        <div>
+          <h1>PR Ready Notifier</h1>
+          <p>GitHub Squash and merge monitor</p>
+        </div>
+      </div>
+      <div id="status" class="status status--unknown">Checking this tab...</div>
+      <p id="detail" class="detail"></p>
+      <section class="auth" aria-labelledby="auth-title">
+        <div class="auth-heading">
+          <strong id="auth-title">GitHub API</strong>
+          <span id="auth-state">Not configured</span>
+        </div>
+        <form id="token-form">
+          <label for="github-token">Personal access token</label>
+          <input
+            id="github-token"
+            name="github-token"
+            type="password"
+            autocomplete="off"
+            spellcheck="false"
+            placeholder="ghp_... or github_pat_..."
+          />
+          <div class="button-row">
+            <button id="save-token" type="submit">Save token</button>
+            <button id="remove-token" class="secondary" type="button">Remove</button>
+          </div>
+        </form>
+        <p id="auth-detail" class="auth-detail">
+          Organization members can use a
+          <a href="https://github.com/settings/personal-access-tokens/new" target="_blank">fine-grained token</a>.
+          Outside collaborators need a
+          <a href="https://github.com/settings/tokens/new" target="_blank">classic token</a>.
+        </p>
+      </section>
+      <section class="auth" aria-labelledby="filter-title">
+        <div class="auth-heading">
+          <strong id="filter-title">Notification filter</strong>
+        </div>
+        <form id="filter-form">
+          <label for="filter-mode">Notify when ready and approved by</label>
+          <select id="filter-mode" name="filter-mode">
+            <option value="me">Me</option>
+            <option value="reviewer">Specific reviewer</option>
+            <option value="any">Anyone / no approval filter</option>
+          </select>
+          <div id="reviewer-field" hidden>
+            <label for="reviewer-login">GitHub username</label>
+            <input
+              id="reviewer-login"
+              name="reviewer-login"
+              type="text"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="octocat"
+            />
+          </div>
+          <button id="save-filter" type="submit">Save filter</button>
+        </form>
+        <p id="filter-detail" class="auth-detail">Only open pull request tabs are checked.</p>
+      </section>
+      <button id="test-notification" type="button">Test notification</button>
+    </main>
+    <script src="popup.js"></script>
+  </body>
+</html>
